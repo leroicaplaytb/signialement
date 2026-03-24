@@ -3,797 +3,1261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guide de Signalement – PHAROS</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Plateforme Nationale de Signalement Citoyen</title>
+<link href="https://fonts.googleapis.com/css2?family=Marianne:wght@400;500;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f5f2ed;
-    --surface: #ffffff;
-    --border: #e0d9cf;
-    --text: #1a1714;
-    --muted: #7a7269;
-    --accent: #1d4ed8;
-    --accent-light: #eff6ff;
-    --warn: #b45309;
-    --warn-light: #fffbeb;
-    --ok: #15803d;
-    --ok-light: #f0fdf4;
-    --danger: #dc2626;
-    --danger-light: #fef2f2;
-    --radius: 12px;
-  }
+:root {
+  --bleu: #003189;
+  --bleu-clair: #0050d0;
+  --rouge: #e1000f;
+  --blanc: #ffffff;
+  --gris-bg: #f6f6f6;
+  --gris-bord: #dddddd;
+  --gris-texte: #3a3a3a;
+  --gris-muted: #777;
+  --vert: #008941;
+  --vert-light: #e8f5ee;
+  --orange: #b34000;
+  --orange-light: #fff4e6;
+  --shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 40px 20px;
-  }
+body {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  background: var(--gris-bg);
+  color: var(--gris-texte);
+  font-size: 15px;
+}
 
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-  }
+/* ── BANDEAU HAUT ── */
+.top-bar {
+  background: var(--bleu);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 32px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.top-bar a { color: #aac4ff; text-decoration: none; }
+.top-bar a:hover { text-decoration: underline; }
 
-  header {
-    margin-bottom: 40px;
-  }
+/* ── HEADER ── */
+.header {
+  background: white;
+  border-bottom: 3px solid var(--bleu);
+  padding: 0 32px;
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+}
+.marianne-logo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.rf-bands {
+  display: flex;
+  flex-direction: column;
+  width: 10px;
+  height: 46px;
+  margin-right: 10px;
+}
+.rf-bands span {
+  flex: 1;
+}
+.rf-bands .b1 { background: #002395; }
+.rf-bands .b2 { background: #EDEDED; }
+.rf-bands .b3 { background: #ED2939; }
+.logo-text-main {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--bleu);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.logo-text-sub {
+  font-size: 11px;
+  color: var(--gris-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.header-sep {
+  width: 1px;
+  height: 48px;
+  background: var(--gris-bord);
+  margin: 0 8px;
+}
+.header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--bleu);
+  line-height: 1.3;
+}
+.header-title small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--gris-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.header-right {
+  margin-left: auto;
+  text-align: right;
+}
+.header-right .date {
+  font-size: 12px;
+  color: var(--gris-muted);
+}
+.header-right .ref {
+  font-size: 11px;
+  color: #bbb;
+  letter-spacing: 0.05em;
+}
 
-  .badge {
-    display: inline-block;
-    background: var(--danger-light);
-    color: var(--danger);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 999px;
-    border: 1px solid #fca5a5;
-    margin-bottom: 16px;
-  }
+/* ── NAV ── */
+nav {
+  background: var(--bleu-clair);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+}
+nav a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  display: block;
+  border-bottom: 3px solid transparent;
+  transition: all 0.15s;
+  letter-spacing: 0.02em;
+}
+nav a:hover, nav a.active {
+  color: white;
+  background: rgba(255,255,255,0.1);
+  border-bottom-color: white;
+}
 
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
-    line-height: 1.2;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
+/* ── URGENCE BANDEAU ── */
+.urgence-strip {
+  background: #fff3cd;
+  border-left: 4px solid #e1a000;
+  padding: 10px 32px;
+  font-size: 13px;
+  color: #7a4700;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.urgence-strip strong { font-weight: 700; }
+.urgence-strip .nums {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.urgence-strip .num-pill {
+  background: #e1a000;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 3px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
 
-  .subtitle {
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 560px;
-  }
+/* ── MAIN ── */
+.main {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 28px;
+}
 
-  .progress-bar-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    margin-bottom: 32px;
-  }
+/* ── SECTION TITRE ── */
+.section-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--bleu);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.section-title-bar h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--bleu);
+  letter-spacing: -0.01em;
+}
+.section-num {
+  background: var(--bleu);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
 
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: 500;
-  }
+/* ── CARD ── */
+.card {
+  background: white;
+  border: 1px solid var(--gris-bord);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+.card-header {
+  background: var(--bleu);
+  color: white;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px 4px 0 0;
+}
+.card-body { padding: 20px; }
 
-  .progress-count {
-    color: var(--muted);
-    font-size: 13px;
-  }
+/* ── RECHERCHE INFRACTION ── */
+.search-box {
+  position: relative;
+  margin-bottom: 16px;
+}
+.search-box input {
+  width: 100%;
+  padding: 12px 48px 12px 16px;
+  border: 2px solid var(--bleu-clair);
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  color: var(--gris-texte);
+  transition: border-color 0.15s;
+}
+.search-box input:focus { border-color: var(--bleu); }
+.search-box .search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--bleu-clair);
+}
+.search-hint {
+  font-size: 12px;
+  color: var(--gris-muted);
+  margin-bottom: 12px;
+  font-style: italic;
+}
 
-  .bar-bg {
-    background: var(--border);
-    height: 8px;
-    border-radius: 99px;
-    overflow: hidden;
-  }
+.crimes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
 
-  .bar-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 99px;
-    transition: width 0.4s ease;
-  }
+.crime-card {
+  border: 2px solid var(--gris-bord);
+  border-radius: 4px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  user-select: none;
+}
+.crime-card:hover {
+  border-color: var(--bleu-clair);
+  background: #f0f4ff;
+}
+.crime-card.selected {
+  border-color: var(--bleu);
+  background: #e8f0ff;
+}
+.crime-card .c-icon { font-size: 20px; flex-shrink: 0; }
+.crime-card .c-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gris-texte);
+  line-height: 1.3;
+}
+.crime-card .c-sub {
+  font-size: 11px;
+  color: var(--gris-muted);
+}
+.crime-card.selected .c-label { color: var(--bleu); }
+.crime-card.hidden { display: none; }
 
-  .readiness {
-    margin-top: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    transition: color 0.3s;
-  }
+.crime-check {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--gris-bord);
+  border-radius: 3px;
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: white;
+  transition: all 0.15s;
+}
+.crime-card.selected .crime-check {
+  background: var(--bleu);
+  border-color: var(--bleu);
+}
 
-  .section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
+/* ── NUMÉROS PAR TYPE ── */
+.numbers-panel {
+  margin-top: 20px;
+  display: none;
+}
+.numbers-panel.visible { display: block; }
 
-  .section-header {
-    padding: 18px 24px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    user-select: none;
-    border-bottom: 1px solid transparent;
-    transition: background 0.15s;
-  }
+.num-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--gris-bord);
+  border-left: 4px solid var(--bleu);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 10px;
+  background: white;
+  animation: slideIn 0.2s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.num-entry .n-icon { font-size: 24px; flex-shrink: 0; }
+.num-entry .n-body { flex: 1; }
+.num-entry .n-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--bleu);
+  margin-bottom: 3px;
+}
+.num-entry .n-desc {
+  font-size: 12px;
+  color: var(--gris-muted);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+.num-entry .n-nums { display: flex; gap: 8px; flex-wrap: wrap; }
+.n-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bleu);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 4px 14px;
+  border-radius: 3px;
+  letter-spacing: 0.03em;
+}
+.n-badge.gratuit::after {
+  content: 'gratuit';
+  font-size: 9px;
+  font-weight: 400;
+  background: rgba(255,255,255,0.25);
+  padding: 1px 5px;
+  border-radius: 2px;
+  letter-spacing: 0.03em;
+}
+.n-badge.urgent { background: var(--rouge); }
+.n-badge.vert { background: var(--vert); }
+.n-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--bleu-clair);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--bleu-clair);
+  border-radius: 3px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.n-link:hover { background: var(--bleu-clair); color: white; }
 
-  .section-header:hover { background: var(--bg); }
+/* ── CHECKLIST ── */
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gris-bg);
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--gris-bord);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+}
+.checklist-item input:checked {
+  background: var(--bleu);
+  border-color: var(--bleu);
+}
+.checklist-item input:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+.checklist-item .ci-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.checklist-item input:checked ~ .ci-label {
+  text-decoration: line-through;
+  color: var(--gris-muted);
+}
+.checklist-item .ci-hint {
+  font-size: 11px;
+  color: var(--gris-muted);
+  margin-top: 2px;
+}
+.tag-req {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #fef2f2;
+  color: var(--rouge);
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-left: 6px;
+}
 
-  .section.open .section-header {
-    border-bottom-color: var(--border);
-  }
+/* ── PROGRESS ── */
+.progress-wrap {
+  background: var(--gris-bg);
+  border: 1px solid var(--gris-bord);
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.bar-bg {
+  background: var(--gris-bord);
+  height: 10px;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: var(--bleu);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.progress-status {
+  font-size: 12px;
+  color: var(--gris-muted);
+  margin-top: 6px;
+  font-style: italic;
+}
 
-  .section-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
-    flex-shrink: 0;
-  }
+/* ── SIDEBAR ── */
+.sidebar {}
 
-  .section-meta { flex: 1; }
+.info-box {
+  background: #e8f0ff;
+  border: 1px solid #c0d0f0;
+  border-left: 4px solid var(--bleu);
+  border-radius: 0 4px 4px 0;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #1a2a5a;
+}
+.info-box strong { font-weight: 700; }
 
-  .section-title {
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 2px;
-  }
+.warn-box {
+  background: var(--orange-light);
+  border: 1px solid #f5c070;
+  border-left: 4px solid var(--orange);
+  border-radius: 0 4px 4px 0;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #5a2800;
+}
 
-  .section-desc {
-    font-size: 12px;
-    color: var(--muted);
-  }
+.contact-card {
+  background: white;
+  border: 1px solid var(--gris-bord);
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.contact-card h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bleu);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--gris-bg);
+  padding-bottom: 6px;
+}
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--gris-bg);
+}
+.contact-line:last-child { border-bottom: none; }
+.contact-num {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--bleu);
+  min-width: 52px;
+}
+.contact-num.red { color: var(--rouge); }
+.contact-desc { font-size: 12px; color: var(--gris-muted); line-height: 1.4; }
 
-  .section-badge {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  background: var(--bleu);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.15s;
+  margin-bottom: 10px;
+}
+.btn-primary:hover { background: var(--bleu-clair); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,49,137,0.2); }
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px;
+  background: white;
+  color: var(--bleu);
+  border: 2px solid var(--bleu);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  margin-bottom: 10px;
+}
+.btn-secondary:hover { background: var(--bleu); color: white; }
+.btn-discord {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px;
+  background: #5865F2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  margin-bottom: 6px;
+}
+.btn-discord:hover { background: #4752c4; transform: translateY(-1px); }
+.citizen-note {
+  font-size: 11px;
+  color: var(--gris-muted);
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 16px;
+}
 
-  .chevron {
-    color: var(--muted);
-    font-size: 13px;
-    transition: transform 0.25s;
-  }
+/* ── FOOTER ── */
+footer {
+  background: var(--bleu);
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  padding: 24px 32px;
+  margin-top: 40px;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+footer a:hover { color: white; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-disclaimer {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 16px;
+  max-width: 1100px;
+  margin: 16px auto 0;
+  padding: 12px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+}
 
-  .section.open .chevron { transform: rotate(180deg); }
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  .main { grid-template-columns: 1fr; }
+  .crimes-grid { grid-template-columns: 1fr; }
+  .header-inner { flex-wrap: wrap; gap: 12px; }
+  .top-bar { display: none; }
+}
 
-  .section-body {
-    display: none;
-    padding: 20px 24px;
-  }
-
-  .section.open .section-body { display: block; }
-
-  .item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--bg);
-  }
-
-  .item:last-child { border-bottom: none; }
-
-  .item label {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  .item input[type="checkbox"] {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border);
-    border-radius: 5px;
-    flex-shrink: 0;
-    margin-top: 1px;
-    cursor: pointer;
-    transition: all 0.15s;
-    position: relative;
-  }
-
-  .item input[type="checkbox"]:checked {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .item input[type="checkbox"]:checked::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  .item-text { flex: 1; }
-
-  .item-label {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--text);
-    transition: color 0.15s;
-  }
-
-  .item input:checked ~ .item-text .item-label {
-    color: var(--muted);
-    text-decoration: line-through;
-  }
-
-  .item-hint {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 3px;
-    line-height: 1.5;
-  }
-
-  .important-tag {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--warn);
-    background: var(--warn-light);
-    padding: 2px 7px;
-    border-radius: 4px;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-
-  .notes-area {
-    margin-top: 16px;
-  }
-
-  .notes-area label {
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 8px;
-    color: var(--muted);
-  }
-
-  .notes-area textarea {
-    width: 100%;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--text);
-    background: var(--bg);
-    resize: vertical;
-    min-height: 90px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-
-  .notes-area textarea:focus {
-    border-color: var(--accent);
-  }
-
-  .action-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px;
-    margin-top: 32px;
-    text-align: center;
-  }
-
-  .action-box h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-  }
-
-  .action-box p {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 24px;
-    line-height: 1.6;
-  }
-
-  .btn-group {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    transition: all 0.15s;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-  }
-
-  .btn-primary:hover { background: #1e40af; transform: translateY(-1px); }
-
-  .btn-secondary {
-    background: var(--bg);
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-
-  .btn-secondary:hover { background: var(--border); }
-
-  .warning-box {
-    background: var(--warn-light);
-    border: 1px solid #fcd34d;
-    border-radius: var(--radius);
-    padding: 16px 20px;
-    margin-bottom: 24px;
-    font-size: 13px;
-    color: var(--warn);
-    line-height: 1.6;
-  }
-
-  .warning-box strong { font-weight: 600; }
-
-  .urgency-box {
-    background: var(--danger-light);
-    border: 1px solid #fca5a5;
-    border-radius: var(--radius);
-    padding: 16px 20px;
-    margin-bottom: 24px;
-  }
-
-  .urgency-box p {
-    font-size: 13px;
-    color: var(--danger);
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-
-  .urgency-box a {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--danger);
-    text-decoration: none;
-    background: white;
-    border: 1px solid #fca5a5;
-    padding: 7px 14px;
-    border-radius: 6px;
-    margin-right: 8px;
-    margin-top: 4px;
-    transition: background 0.15s;
-  }
-
-  .urgency-box a:hover { background: #fef2f2; }
-
-  @media (max-width: 500px) {
-    h1 { font-size: 1.6rem; }
-    .section-header { padding: 14px 16px; }
-    .section-body { padding: 16px; }
-    .action-box { padding: 20px 16px; }
-  }
+.no-results {
+  text-align: center;
+  padding: 20px;
+  color: var(--gris-muted);
+  font-style: italic;
+  font-size: 14px;
+  display: none;
+}
 </style>
 </head>
 <body>
-<div class="container">
 
-  <header>
-    <div class="badge">🛡 Outil de signalement citoyen</div>
-    <h1>Préparer un signalement<br>à PHAROS</h1>
-    <p class="subtitle">Ce guide vous aide à structurer les informations avant de les transmettre aux autorités compétentes. Aucune donnée n'est stockée.</p>
-  </header>
-
-  <div class="urgency-box">
-    <p>⚠️ Si un enfant est en danger immédiat, contactez directement :</p>
-    <a href="tel:17">📞 Police : 17</a>
-    <a href="tel:119">📞 Enfance en danger : 119</a>
-    <a href="https://www.internet-signalement.gouv.fr" target="_blank">🌐 PHAROS en ligne</a>
+<!-- BANDEAU SUPÉRIEUR -->
+<div class="top-bar">
+  <span>République Française &nbsp;·&nbsp; Plateforme d'assistance aux victimes</span>
+  <div style="display:flex;gap:16px">
+    <a href="https://www.service-public.fr" target="_blank">service-public.fr</a>
+    <a href="https://www.gouvernement.fr" target="_blank">gouvernement.fr</a>
+    <a href="https://www.police-nationale.interieur.gouv.fr" target="_blank">police-nationale.gouv.fr</a>
   </div>
-
-  <div class="progress-bar-wrap">
-    <div class="progress-label">
-      <span style="font-weight:600">Complétude du dossier</span>
-      <span class="progress-count" id="count">0 / 0 éléments</span>
-    </div>
-    <div class="bar-bg">
-      <div class="bar-fill" id="bar" style="width:0%"></div>
-    </div>
-    <div class="readiness" id="readiness">Cochez les éléments dont vous disposez.</div>
-  </div>
-
-  <!-- SECTION 1 -->
-  <div class="section open" data-section="1">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon" style="background:#eff6ff">🔗</div>
-      <div class="section-meta">
-        <div class="section-title">Source & plateforme</div>
-        <div class="section-desc">Où les faits ont-ils été observés ?</div>
-      </div>
-      <span class="section-badge" id="badge-1" style="background:#f3f4f6;color:#6b7280">0/4</span>
-      <span class="chevron">▼</span>
-    </div>
-    <div class="section-body">
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Nom de la plateforme / réseau social <span class="important-tag">essentiel</span></div>
-            <div class="item-hint">Ex : Telegram, Discord, Facebook, forum, site web…</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">URL ou lien direct vers le contenu</div>
-            <div class="item-hint">Copier l'adresse exacte de la page, du profil ou du message</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Pseudo ou identifiant de l'auteur</div>
-            <div class="item-hint">Nom d'utilisateur, @handle, numéro de profil</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Date et heure de publication</div>
-            <div class="item-hint">Le plus précis possible, avec le fuseau horaire si affiché</div>
-          </div>
-        </label>
-      </div>
-      <div class="notes-area">
-        <label>Notes sur la source :</label>
-        <textarea placeholder="Ex : profil public sur Instagram, compte créé en 2022, 340 abonnés…"></textarea>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 2 -->
-  <div class="section" data-section="2">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon" style="background:#f0fdf4">📸</div>
-      <div class="section-meta">
-        <div class="section-title">Preuves conservées</div>
-        <div class="section-desc">Comment les éléments ont-ils été sécurisés ?</div>
-      </div>
-      <span class="section-badge" id="badge-2" style="background:#f3f4f6;color:#6b7280">0/4</span>
-      <span class="chevron">▼</span>
-    </div>
-    <div class="section-body">
-      <div class="warning-box">
-        <strong>Important :</strong> Ne modifiez jamais les fichiers originaux. Conservez les captures telles quelles avec les métadonnées.
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Captures d'écran horodatées <span class="important-tag">essentiel</span></div>
-            <div class="item-hint">Inclure l'URL, la date, l'heure visible dans la capture</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Archivage web (archive.org / archive.ph)</div>
-            <div class="item-hint">Créer une archive de la page pour preuve en cas de suppression</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Conservation des messages / conversations</div>
-            <div class="item-hint">Export ou capture de l'historique complet du fil</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Fichiers originaux non modifiés</div>
-            <div class="item-hint">Images, vidéos, documents — conservés avec leur nom d'origine</div>
-          </div>
-        </label>
-      </div>
-      <div class="notes-area">
-        <label>Méthode de conservation utilisée :</label>
-        <textarea placeholder="Ex : captures sur iPhone, archivé sur archive.ph le 20/03/2025…"></textarea>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 3 -->
-  <div class="section" data-section="3">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon" style="background:#fff7ed">📋</div>
-      <div class="section-meta">
-        <div class="section-title">Description des faits</div>
-        <div class="section-desc">Ce qui a été observé, objectivement</div>
-      </div>
-      <span class="section-badge" id="badge-3" style="background:#f3f4f6;color:#6b7280">0/4</span>
-      <span class="chevron">▼</span>
-    </div>
-    <div class="section-body">
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Description factuelle du contenu observé <span class="important-tag">essentiel</span></div>
-            <div class="item-hint">Décrire ce qui est vu/lu, sans interprétation personnelle</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Nature du contenu (image, texte, vidéo, sollicitation…)</div>
-            <div class="item-hint">Préciser le type sans décrire en détail un contenu illégal</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Présence supposée d'un mineur</div>
-            <div class="item-hint">Ce qui laisse penser qu'un enfant est concerné (âge apparent, propos…)</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Chronologie des événements</div>
-            <div class="item-hint">Depuis quand, fréquence des publications, évolution observée</div>
-          </div>
-        </label>
-      </div>
-      <div class="notes-area">
-        <label>Description factuelle (restez objectif·ve) :</label>
-        <textarea placeholder="Décrivez ce que vous avez observé, sans jugement ni interprétation…"></textarea>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 4 -->
-  <div class="section" data-section="4">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon" style="background:#fdf2f8">🔍</div>
-      <div class="section-meta">
-        <div class="section-title">Informations publiques disponibles</div>
-        <div class="section-desc">Uniquement depuis des sources ouvertes légales</div>
-      </div>
-      <span class="section-badge" id="badge-4" style="background:#f3f4f6;color:#6b7280">0/4</span>
-      <span class="chevron">▼</span>
-    </div>
-    <div class="section-body">
-      <div class="warning-box">
-        <strong>Rappel :</strong> Ne cherchez que des informations <em>publiquement accessibles</em>. N'essayez pas d'obtenir des données privées ou de contacter le suspect.
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Autres profils publics liés (même pseudo, même photo)</div>
-            <div class="item-hint">Autres comptes avec le même identifiant sur d'autres plateformes</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Informations publiques du profil</div>
-            <div class="item-hint">Bio, localisation affichée, centres d'intérêt indiqués publiquement</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Réseau de contacts ou groupe impliqué</div>
-            <div class="item-hint">S'il existe un groupe, forum ou réseau plus large</div>
-          </div>
-        </label>
-      </div>
-      <div class="item">
-        <label>
-          <input type="checkbox" onchange="update()">
-          <div class="item-text">
-            <div class="item-label">Publications publiques passées pertinentes</div>
-            <div class="item-hint">Historique public du compte, avec dates</div>
-          </div>
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <!-- ACTION -->
-  <div class="action-box" id="action-box">
-    <h3 id="action-title">Prêt à signaler ?</h3>
-    <p id="action-text">Complétez les sections ci-dessus pour évaluer si votre dossier est suffisant pour un signalement efficace à PHAROS.</p>
-    <div class="btn-group">
-      <a class="btn btn-primary" href="https://www.internet-signalement.gouv.fr" target="_blank">
-        🚨 Signaler sur PHAROS
-      </a>
-      <button class="btn btn-secondary" onclick="exportNotes()">
-        📄 Exporter mes notes
-      </button>
-    </div>
-  </div>
-
 </div>
 
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="marianne-logo">
+      <div class="rf-bands">
+        <span class="b1"></span>
+        <span class="b2"></span>
+        <span class="b3"></span>
+      </div>
+      <div>
+        <div class="logo-text-main">République<br>Française</div>
+      </div>
+    </div>
+    <div class="header-sep"></div>
+    <div>
+      <small style="font-size:11px;color:var(--gris-muted);text-transform:uppercase;letter-spacing:0.06em">Outil citoyen indépendant</small>
+      <div class="header-title">Guide de Signalement aux Autorités<br><small>Aide à la préparation de signalements officiels</small></div>
+    </div>
+    <div class="header-right">
+      <div class="date" id="today-date"></div>
+      <div class="ref">REF. OUTIL-SIG-CITOYEN</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="active">🏠 Accueil</a>
+    <a href="#signaler">🚨 Signaler</a>
+    <a href="#numeros">📞 Numéros</a>
+    <a href="#preuves">🔒 Sécuriser des preuves</a>
+    <a href="https://discord.gg/SpMhPAYjBG" target="_blank">💬 Serveur DGSI</a>
+  </div>
+</nav>
+
+<!-- URGENCE STRIP -->
+<div class="urgence-strip">
+  <strong>⚠️ Urgence ?</strong>
+  <div class="nums">
+    <span class="num-pill">🚔 Police · 17</span>
+    <span class="num-pill">🔥 Pompiers · 18</span>
+    <span class="num-pill">🚑 SAMU · 15</span>
+    <span class="num-pill">📞 Urgences EU · 112</span>
+    <span class="num-pill">👶 Enfance danger · 119</span>
+    <span class="num-pill">💣 Anti-bombe · 36.52</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="signaler">
+
+  <!-- COLONNE GAUCHE -->
+  <div>
+
+    <!-- ÉTAPE 1 : CHOISIR LE TYPE -->
+    <div class="card">
+      <div class="card-header">
+        <span style="background:white;color:var(--bleu);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">1</span>
+        Sélectionnez le ou les types d'infraction
+      </div>
+      <div class="card-body">
+        <div class="search-box">
+          <input type="text" id="crime-search" placeholder="Rechercher... ex: pédofil, viol, drogue, attentat…" oninput="searchCrimes()">
+          <span class="search-icon">🔍</span>
+        </div>
+        <div class="search-hint">✏️ Pas de souci d'orthographe — la recherche comprend les approximations (pédofil = pédophile, viole = viol, bombe = attentat…)</div>
+
+        <div class="crimes-grid" id="crimes-grid">
+          <!-- injecté par JS -->
+        </div>
+        <div class="no-results" id="no-results">Aucun résultat — essayez un autre mot (ex: enfant, sexuel, violence…)</div>
+
+        <!-- Numéros correspondants -->
+        <div class="numbers-panel" id="numbers-panel">
+          <div style="display:flex;align-items:center;gap:10px;margin:20px 0 14px;border-top:2px solid var(--bleu);padding-top:16px">
+            <span style="background:var(--bleu);color:white;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">2</span>
+            <strong style="color:var(--bleu);font-size:16px">Numéros d'écoute & de signalement</strong>
+          </div>
+          <div id="numbers-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 : CHECKLIST PREUVES -->
+    <div class="card" id="preuves">
+      <div class="card-header">
+        <span style="background:white;color:var(--bleu);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">3</span>
+        Vérifiez les éléments de votre dossier
+      </div>
+      <div class="card-body">
+        <div class="progress-wrap">
+          <div class="progress-top">
+            <span>Complétude du dossier</span>
+            <span id="prog-count" style="color:var(--bleu)">0 / 12</span>
+          </div>
+          <div class="bar-bg"><div class="bar-fill" id="prog-bar" style="width:0%"></div></div>
+          <div class="progress-status" id="prog-status">Cochez les éléments dont vous disposez.</div>
+        </div>
+
+        <div style="font-weight:700;font-size:13px;color:var(--gris-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">📍 Source & localisation</div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Nom de la plateforme (réseau, site, application)<span class="tag-req">requis</span></div><div class="ci-hint">Ex : Telegram, Discord, Facebook, site web</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">URL ou lien direct<span class="tag-req">requis</span></div><div class="ci-hint">Adresse exacte de la page, profil ou message</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Pseudo / identifiant de l'auteur</div><div class="ci-hint">@handle, nom d'utilisateur, numéro de profil</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Date et heure des faits<span class="tag-req">requis</span></div><div class="ci-hint">Le plus précis possible avec fuseau horaire si affiché</div></div></div>
+
+        <div style="font-weight:700;font-size:13px;color:var(--gris-muted);text-transform:uppercase;letter-spacing:0.06em;margin:16px 0 12px">📸 Conservation des preuves</div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Captures d'écran avec URL et date visibles<span class="tag-req">requis</span></div><div class="ci-hint">Ne jamais recadrer ou modifier les captures</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Archive de la page (archive.ph ou archive.org)</div><div class="ci-hint">En cas de suppression du contenu par l'auteur</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Conservation des fichiers originaux non modifiés</div><div class="ci-hint">Images, vidéos — avec leur nom d'origine</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Historique de conversation exporté ou capturé</div></div></div>
+
+        <div style="font-weight:700;font-size:13px;color:var(--gris-muted);text-transform:uppercase;letter-spacing:0.06em;margin:16px 0 12px">📋 Description factuelle</div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Description objective des faits observés<span class="tag-req">requis</span></div><div class="ci-hint">Sans interprétation — ce que vous avez vu ou lu</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Nature du contenu (texte, image, vidéo, sollicitation…)</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Chronologie des événements</div><div class="ci-hint">Depuis quand, fréquence, évolution observée</div></div></div>
+        <div class="checklist-item"><input type="checkbox" onchange="updateProgress()"><div><div class="ci-label">Informations publiques sur l'auteur (profil public, bio…)</div><div class="ci-hint">Uniquement des sources ouvertes légalement accessibles</div></div></div>
+
+        <textarea style="width:100%;border:1px solid var(--gris-bord);border-radius:4px;padding:12px;font-family:inherit;font-size:13px;margin-top:16px;resize:vertical;min-height:90px;outline:none" placeholder="Notes complémentaires pour le signalement…"></textarea>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="numeros">
+
+    <!-- PROGRESS MINI -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">📤 Transmettre aux autorités</div>
+      <div class="card-body">
+        <a class="btn-primary" href="https://www.internet-signalement.gouv.fr" target="_blank">🚨 Signaler sur PHAROS</a>
+        <button class="btn-secondary" onclick="exportDossier()">📄 Exporter le dossier (.txt)</button>
+        <div style="border-top:1px solid var(--gris-bord);padding-top:12px;margin-top:4px">
+          <a class="btn-discord" href="https://discord.gg/SpMhPAYjBG" target="_blank">
+            <svg width="20" height="15" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.9a.2.2 0 0 0-.2.1c-.6 1.1-1.3 2.5-1.8 3.7a54.1 54.1 0 0 0-16.3 0C26.8 3.5 26 2.1 25.5 1a.2.2 0 0 0-.2-.1A58.4 58.4 0 0 0 10.8 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 31 .3 43.7c0 .1.1.1.2.2a58.8 58.8 0 0 0 17.7 9 .2.2 0 0 0 .2-.1c1.4-1.9 2.6-3.8 3.6-5.9a.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36 36 0 0 1-5.5 2.6.2.2 0 0 0-.1.3c1.1 2 2.3 4 3.6 5.9a.2.2 0 0 0 .2.1 58.7 58.7 0 0 0 17.8-9 .2.2 0 0 0 .1-.2c1.5-15.2-2.5-28-10.6-39.5a.2.2 0 0 0-.1-.1ZM23.7 36c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2c3.6 0 6.5 3.3 6.4 7.2 0 4-2.8 7.2-6.4 7.2Zm23.7 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2c3.6 0 6.5 3.3 6.4 7.2 0 4-2.8 7.2-6.4 7.2Z" fill="white"/></svg>
+            Rejoindre la Serveur DGSI
+          </a>
+          <div class="citizen-note">Initiative citoyenne indépendante — non affiliée à l'État</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NUMÉROS D'URGENCE COMPLETS -->
+    <div class="contact-card">
+      <h4>🚨 Numéros d'urgence</h4>
+      <div class="contact-line"><span class="contact-num red">17</span><div class="contact-desc">Police Nationale<br>Urgence, crime, flagrant délit</div></div>
+      <div class="contact-line"><span class="contact-num red">18</span><div class="contact-desc">Pompiers<br>Incendie, danger immédiat</div></div>
+      <div class="contact-line"><span class="contact-num red">15</span><div class="contact-desc">SAMU<br>Urgence médicale</div></div>
+      <div class="contact-line"><span class="contact-num">112</span><div class="contact-desc">Numéro européen<br>Toutes urgences, fonctionne à l'étranger</div></div>
+      <div class="contact-line"><span class="contact-num">114</span><div class="contact-desc">Urgences personnes sourdes/muettes<br>SMS et visio disponibles</div></div>
+    </div>
+
+    <div class="contact-card">
+      <h4>👶 Protection de l'enfance</h4>
+      <div class="contact-line"><span class="contact-num">119</span><div class="contact-desc">Enfance en Danger — 24h/24<br>Anonyme et gratuit</div></div>
+      <div class="contact-line"><span class="contact-num">3018</span><div class="contact-desc">Cyberviolence (ados, parents)<br>Gratuit, confidentiel</div></div>
+      <div class="contact-line"><span class="contact-num">0800 200 000</span><div class="contact-desc">Stop Discrimination<br>Signalement actes haineux en ligne</div></div>
+    </div>
+
+    <div class="contact-card">
+      <h4>💬 Écoute & soutien (privé)</h4>
+      <div class="contact-line"><span class="contact-num">3114</span><div class="contact-desc">Numéro National Prévention Suicide<br>24h/24 — écoutants formés</div></div>
+      <div class="contact-line"><span class="contact-num">0800 05 95 95</span><div class="contact-desc">SOS Amitié — écoute anonyme<br>Gratuit, disponible 24h/24</div></div>
+      <div class="contact-line"><span class="contact-num">0 800 59 59 56</span><div class="contact-desc">Violences conjugales & familiales<br>Anonyme — Fédération Nationale</div></div>
+      <div class="contact-line"><span class="contact-num">3919</span><div class="contact-desc">Violences Femmes Info<br>Anonyme, gratuit, 7j/7</div></div>
+      <div class="contact-line"><span class="contact-num">0808 80 17 71</span><div class="contact-desc">France Victimes — aide aux victimes<br>Gratuit, confidentiel</div></div>
+    </div>
+
+    <div class="contact-card">
+      <h4>💣 Menaces & terrorisme</h4>
+      <div class="contact-line"><span class="contact-num">3636</span><div class="contact-desc">Alerte attentat / menace terroriste<br>(anciennement 36 52)</div></div>
+      <div class="contact-line"><span class="contact-num">0 800 005 696</span><div class="contact-desc">Stop-Djihadisme / Déradicalisation<br>Signalement, gratuit</div></div>
+    </div>
+
+    <div class="info-box">
+      <strong>🌐 Signalements en ligne :</strong><br>
+      <a href="https://www.internet-signalement.gouv.fr" target="_blank" style="color:var(--bleu-clair)">PHAROS</a> — contenu illicite sur internet<br>
+      <a href="https://www.pre-plainte-en-ligne.gouv.fr" target="_blank" style="color:var(--bleu-clair)">Pré-plainte en ligne</a> — préparer une plainte<br>
+      <a href="https://www.masecurite.interieur.gouv.fr" target="_blank" style="color:var(--bleu-clair)">Ma Sécurité</a> — portail officiel police
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div style="color:white;font-weight:700;margin-bottom:6px">Guide de Signalement Citoyen</div>
+      <div>Outil d'aide à la préparation de signalements officiels</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.internet-signalement.gouv.fr" target="_blank">PHAROS</a>
+      <a href="https://www.service-public.fr" target="_blank">Service-Public.fr</a>
+      <a href="https://www.police-nationale.interieur.gouv.fr" target="_blank">Police Nationale</a>
+      <a href="https://discord.gg/SpMhPAYjBG" target="_blank">Communauté Discord</a>
+    </div>
+  </div>
+  <div class="footer-disclaimer">
+    Cet outil est une initiative citoyenne indépendante, non affiliée à l'État français, à la DGSI ou à tout organisme gouvernemental.
+    Il vise uniquement à aider les citoyens à préparer des signalements vers les autorités officielles compétentes.
+    Aucune donnée n'est collectée ni transmise par cet outil.
+  </div>
+</footer>
+
 <script>
-  let total = 0;
-  let checked = 0;
+// ── CRIMES DATABASE avec mots-clés pour fuzzy search ──
+const crimes = [
+  {
+    id: 'pedo',
+    icon: '🔴',
+    label: 'Pédophilie / CSAM',
+    sub: 'Contenu sexuel impliquant des mineurs',
+    keywords: ['pédophile','pedophile','pédofil','pedofil','pedofile','pédofile','enfant','mineur','csa','csam','abus','sexuel','grooming','gromming','attouchement'],
+    numbers: ['pedo','enfance','cyberviolence','pharos']
+  },
+  {
+    id: 'viol',
+    icon: '🔴',
+    label: 'Viol / Agression sexuelle',
+    sub: 'Violence sexuelle sur adulte ou mineur',
+    keywords: ['viol','viole','violé','violer','agression','sexuelle','sexuel','assault','rape','attouchement','agress'],
+    numbers: ['femmes','victimes','pharos']
+  },
+  {
+    id: 'violence',
+    icon: '🟠',
+    label: 'Violence physique',
+    sub: 'Coups, blessures, séquestration',
+    keywords: ['violence','violences','coups','blessure','séquestration','sequestration','baston','frapper','maltraitance','maltraitement','maltraitance'],
+    numbers: ['femmes','victimes']
+  },
+  {
+    id: 'conjugale',
+    icon: '🟠',
+    label: 'Violences conjugales',
+    sub: 'Violence dans le couple / famille',
+    keywords: ['conjugale','conjugal','couple','mari','femme','époux','épouse','famille','domestique','domest'],
+    numbers: ['femmes','victimes','ecoute']
+  },
+  {
+    id: 'attentat',
+    icon: '⚫',
+    label: 'Terrorisme / Attentat',
+    sub: 'Menace, radicalisation, bombe',
+    keywords: ['attentat','terrorisme','terroriste','bombe','explosif','djihad','jihad','radical','radicalisation','isis','daesh','alqaida','menace','arme'],
+    numbers: ['antiterro','bombe']
+  },
+  {
+    id: 'drogue',
+    icon: '🟡',
+    label: 'Trafic de stupéfiants',
+    sub: 'Vente, trafic, deal',
+    keywords: ['drogue','stupéfiants','stupefiants','deal','dealer','cannabis','cocaïne','cocaine','héroïne','heroine','trafic','vente','revendeur'],
+    numbers: ['police17','pharos']
+  },
+  {
+    id: 'harcelement',
+    icon: '🔵',
+    label: 'Cyberharcèlement',
+    sub: 'Harcèlement en ligne, menaces, stalking',
+    keywords: ['harcèlement','harcelement','harassment','cyberharcèlement','cyberharcelement','menace','intimidation','stalking','doxxing','doxing','revenge','porn'],
+    numbers: ['cyberviolence','pharos']
+  },
+  {
+    id: 'traite',
+    icon: '⚫',
+    label: 'Traite des êtres humains',
+    sub: 'Proxénétisme, esclavage, exploitation',
+    keywords: ['traite','proxénétisme','proxenetisme','esclavage','prostitution','exploitation','trafficking','humain','trafic humain'],
+    numbers: ['victimes','pharos','police17']
+  },
+  {
+    id: 'discrimination',
+    icon: '🔵',
+    label: 'Haine / Discrimination',
+    sub: 'Racisme, antisémitisme, homophobie',
+    keywords: ['racisme','raciste','antisémitisme','antisemitisme','homophobie','discrimination','haine','hate','islamophobie','injure','insulte'],
+    numbers: ['discrimination','pharos']
+  },
+  {
+    id: 'escroquerie',
+    icon: '🟡',
+    label: 'Escroquerie / Arnaque',
+    sub: 'Fraude, phishing, faux profils',
+    keywords: ['escroquerie','arnaque','fraude','phishing','scam','usurpation','faux','fausse','identité','vol'],
+    numbers: ['pharos','police17']
+  },
+  {
+    id: 'enlev',
+    icon: '🔴',
+    label: 'Enlèvement / Disparition',
+    sub: 'Enlèvement d\'enfant ou de personne',
+    keywords: ['enlèvement','enlevement','enlever','kidnapping','disparu','disparition','séquestration','séquestr'],
+    numbers: ['enfance','police17']
+  },
+  {
+    id: 'armes',
+    icon: '⚫',
+    label: 'Trafic d\'armes',
+    sub: 'Vente illégale d\'armes à feu',
+    keywords: ['armes','arme','fusil','pistolet','trafic armes','kalash','kalachnikov','flingue','gun'],
+    numbers: ['police17','pharos']
+  },
+];
 
-  function init() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    total = checkboxes.length;
-    update();
+// ── NUMBERS DATABASE ──
+const numberDefs = {
+  pedo: {
+    icon: '👶',
+    name: 'Protection de l\'enfance en danger',
+    desc: 'Signalement 24h/24, anonyme, gratuit. Écoute et orientation vers les autorités compétentes.',
+    nums: [{ n: '119', label: 'Enfance en Danger', type: 'gratuit' }],
+    link: null
+  },
+  enfance: {
+    icon: '🛡️',
+    name: 'Enfance en Danger – 119',
+    desc: 'Ligne nationale de protection de l\'enfance. Disponible 24h/24, 7j/7. Appel anonyme et gratuit.',
+    nums: [{ n: '119', type: 'gratuit urgent' }],
+    link: 'https://www.enfanceendanger.gouv.fr'
+  },
+  cyberviolence: {
+    icon: '💬',
+    name: 'Numéro national contre les cyberviolences',
+    desc: 'Écoute, accompagnement et signalement des violences numériques pour les jeunes et les parents.',
+    nums: [{ n: '3018', type: 'gratuit' }],
+    link: 'https://www.3018.fr'
+  },
+  pharos: {
+    icon: '🌐',
+    name: 'PHAROS — Signalement de contenus illicites',
+    desc: 'Plateforme officielle de signalement de contenus illicites sur internet (Ministère de l\'Intérieur).',
+    nums: [],
+    link: 'https://www.internet-signalement.gouv.fr'
+  },
+  femmes: {
+    icon: '🤝',
+    name: 'Violences Femmes Info — 3919',
+    desc: 'Numéro national anonyme et gratuit. Violences conjugales, sexuelles, harcèlement. 7j/7.',
+    nums: [{ n: '3919', type: 'gratuit' }],
+    link: null
+  },
+  victimes: {
+    icon: '⚖️',
+    name: 'France Victimes — aide aux victimes',
+    desc: 'Association nationale d\'aide aux victimes. Accompagnement juridique, psychologique, social.',
+    nums: [{ n: '0808 80 17 71', type: 'gratuit' }],
+    link: 'https://www.france-victimes.fr'
+  },
+  ecoute: {
+    icon: '🎧',
+    name: 'SOS Amitié — écoute anonyme',
+    desc: 'Écoute bienveillante et confidentielle, 24h/24. Pas de jugement.',
+    nums: [{ n: '09 72 39 40 50', type: '' }],
+    link: 'https://www.sos-amitie.com'
+  },
+  antiterro: {
+    icon: '🛡️',
+    name: 'Stop-Djihadisme / Déradicalisation',
+    desc: 'Signalement de situation de radicalisation ou de départ vers zones de combat. Gratuit.',
+    nums: [{ n: '0 800 005 696', type: 'gratuit' }],
+    link: 'https://www.stop-djihadisme.gouv.fr'
+  },
+  bombe: {
+    icon: '💣',
+    name: 'Alerte menace / attentat',
+    desc: 'Signalement de menace terroriste, alerte attentat, objet suspect.',
+    nums: [{ n: '3636', type: 'urgent' }, { n: '17', type: 'urgent' }],
+    link: null
+  },
+  police17: {
+    icon: '🚔',
+    name: 'Police Nationale — 17',
+    desc: 'Pour tout signalement urgent nécessitant une intervention immédiate des forces de l\'ordre.',
+    nums: [{ n: '17', type: 'urgent' }],
+    link: 'https://www.police-nationale.interieur.gouv.fr'
+  },
+  discrimination: {
+    icon: '🌈',
+    name: 'Stop Discrimination',
+    desc: 'Signalement de propos ou actes discriminatoires, haineux ou racistes en ligne.',
+    nums: [{ n: '0800 200 000', type: 'gratuit' }],
+    link: null
   }
+};
 
-  function update() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checked = Array.from(checkboxes).filter(c => c.checked).length;
-    total = checkboxes.length;
+// ── FUZZY NORMALIZE ──
+function normalize(str) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/ph/g,'f').replace(/eau/g,'o').replace(/au/g,'o')
+    .replace(/[^a-z0-9]/g,' ').trim();
+}
 
-    const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
-    document.getElementById('bar').style.width = pct + '%';
-    document.getElementById('count').textContent = checked + ' / ' + total + ' éléments';
+function fuzzyMatch(query, keywords) {
+  const q = normalize(query);
+  if (!q) return true;
+  const words = q.split(/\s+/);
+  return words.some(w => keywords.some(k => {
+    const nk = normalize(k);
+    return nk.includes(w) || w.includes(nk) || levenshtein(w, nk) <= 2;
+  }));
+}
 
-    // Update section badges
-    document.querySelectorAll('.section').forEach(sec => {
-      const id = sec.dataset.section;
-      const boxes = sec.querySelectorAll('input[type="checkbox"]');
-      const done = Array.from(boxes).filter(b => b.checked).length;
-      const badge = document.getElementById('badge-' + id);
-      badge.textContent = done + '/' + boxes.length;
-      if (done === boxes.length && boxes.length > 0) {
-        badge.style.background = '#dcfce7';
-        badge.style.color = '#15803d';
-      } else if (done > 0) {
-        badge.style.background = '#fef9c3';
-        badge.style.color = '#a16207';
-      } else {
-        badge.style.background = '#f3f4f6';
-        badge.style.color = '#6b7280';
-      }
-    });
-
-    const bar = document.getElementById('bar');
-    const readiness = document.getElementById('readiness');
-    const actionTitle = document.getElementById('action-title');
-    const actionText = document.getElementById('action-text');
-
-    if (pct === 0) {
-      readiness.textContent = 'Cochez les éléments dont vous disposez.';
-      readiness.style.color = '#7a7269';
-      bar.style.background = '#1d4ed8';
-    } else if (pct < 40) {
-      readiness.textContent = 'Dossier insuffisant — continuez à rassembler des éléments.';
-      readiness.style.color = '#b45309';
-      bar.style.background = '#f59e0b';
-      actionTitle.textContent = 'Dossier encore incomplet';
-      actionText.textContent = 'Il manque des éléments clés. Vous pouvez déjà signaler, mais un dossier plus complet augmente les chances que le signalement soit traité efficacement.';
-    } else if (pct < 70) {
-      readiness.textContent = 'Dossier partiel — signalement possible, mais peut être renforcé.';
-      readiness.style.color = '#a16207';
-      bar.style.background = '#f59e0b';
-      actionTitle.textContent = 'Signalement possible';
-      actionText.textContent = 'Vous avez suffisamment d\'éléments pour faire un signalement. Compléter davantage le dossier rendra l\'enquête plus efficace.';
-    } else if (pct < 100) {
-      readiness.textContent = 'Bon dossier — prêt pour un signalement solide.';
-      readiness.style.color = '#15803d';
-      bar.style.background = '#22c55e';
-      actionTitle.textContent = 'Dossier solide ✓';
-      actionText.textContent = 'Votre signalement dispose d\'une bonne base. Transmettez-le à PHAROS ou directement à la police.';
-    } else {
-      readiness.textContent = '✓ Dossier complet — signalement recommandé immédiatement.';
-      readiness.style.color = '#15803d';
-      bar.style.background = '#16a34a';
-      actionTitle.textContent = '✓ Dossier complet — signalez maintenant';
-      actionText.textContent = 'Vous avez tous les éléments nécessaires. N\'attendez pas : transmettez votre dossier à PHAROS ou directement aux autorités.';
+function levenshtein(a, b) {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+  const m = [];
+  for (let i = 0; i <= b.length; i++) { m[i] = [i]; }
+  for (let j = 0; j <= a.length; j++) { m[0][j] = j; }
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      m[i][j] = b[i-1] === a[j-1]
+        ? m[i-1][j-1]
+        : Math.min(m[i-1][j-1]+1, m[i][j-1]+1, m[i-1][j]+1);
     }
   }
+  return m[b.length][a.length];
+}
 
-  function toggleSection(header) {
-    const section = header.closest('.section');
-    section.classList.toggle('open');
+// ── RENDER CRIMES ──
+let selected = new Set();
+
+function renderCrimes(filter='') {
+  const grid = document.getElementById('crimes-grid');
+  const noRes = document.getElementById('no-results');
+  grid.innerHTML = '';
+  let shown = 0;
+  crimes.forEach(c => {
+    const visible = fuzzyMatch(filter, [c.label, c.sub, ...c.keywords]);
+    if (!visible) return;
+    shown++;
+    const div = document.createElement('div');
+    div.className = 'crime-card' + (selected.has(c.id) ? ' selected' : '');
+    div.innerHTML = `
+      <span class="c-icon">${c.icon}</span>
+      <div style="flex:1">
+        <div class="c-label">${c.label}</div>
+        <div class="c-sub">${c.sub}</div>
+      </div>
+      <div class="crime-check">${selected.has(c.id) ? '✓' : ''}</div>
+    `;
+    div.onclick = () => toggleCrime(c.id);
+    grid.appendChild(div);
+  });
+  noRes.style.display = shown === 0 ? 'block' : 'none';
+  renderNumbers();
+}
+
+function toggleCrime(id) {
+  if (selected.has(id)) selected.delete(id);
+  else selected.add(id);
+  renderCrimes(document.getElementById('crime-search').value);
+}
+
+function searchCrimes() {
+  renderCrimes(document.getElementById('crime-search').value);
+}
+
+// ── RENDER NUMBERS ──
+function renderNumbers() {
+  const panel = document.getElementById('numbers-panel');
+  const list = document.getElementById('numbers-list');
+  if (selected.size === 0) {
+    panel.classList.remove('visible');
+    return;
   }
+  panel.classList.add('visible');
+  const allNums = new Set();
+  selected.forEach(id => {
+    const c = crimes.find(x => x.id === id);
+    if (c) c.numbers.forEach(n => allNums.add(n));
+  });
+  list.innerHTML = '';
+  allNums.forEach(nid => {
+    const def = numberDefs[nid];
+    if (!def) return;
+    const div = document.createElement('div');
+    div.className = 'num-entry';
+    const numsHtml = def.nums.map(n =>
+      `<span class="n-badge ${n.type||''}">${n.n}</span>`
+    ).join('');
+    const linkHtml = def.link
+      ? `<a class="n-link" href="${def.link}" target="_blank">🌐 Site officiel</a>`
+      : '';
+    div.innerHTML = `
+      <span class="n-icon">${def.icon}</span>
+      <div class="n-body">
+        <div class="n-name">${def.name}</div>
+        <div class="n-desc">${def.desc}</div>
+        <div class="n-nums">${numsHtml}${linkHtml}</div>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+}
 
-  function exportNotes() {
-    const textareas = document.querySelectorAll('textarea');
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    let output = 'DOSSIER DE SIGNALEMENT – ' + new Date().toLocaleDateString('fr-FR') + '\n';
-    output += '='.repeat(50) + '\n\n';
+// ── PROGRESS ──
+function updateProgress() {
+  const all = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+  const done = Array.from(all).filter(c => c.checked).length;
+  const total = all.length;
+  const pct = Math.round((done/total)*100);
+  document.getElementById('prog-bar').style.width = pct + '%';
+  document.getElementById('prog-count').textContent = done + ' / ' + total;
+  const bar = document.getElementById('prog-bar');
+  const status = document.getElementById('prog-status');
+  if (pct === 0) { status.textContent = 'Cochez les éléments dont vous disposez.'; bar.style.background='#003189'; }
+  else if (pct < 40) { status.textContent = 'Dossier insuffisant — continuez à rassembler des éléments.'; bar.style.background='#e1a000'; }
+  else if (pct < 70) { status.textContent = 'Signalement possible — quelques éléments peuvent être renforcés.'; bar.style.background='#e1a000'; }
+  else if (pct < 100) { status.textContent = '✓ Bon dossier — prêt pour un signalement solide.'; bar.style.background='#008941'; }
+  else { status.textContent = '✓ Dossier complet — signalez immédiatement.'; bar.style.background='#008941'; }
+}
 
-    let section = '';
-    document.querySelectorAll('.section').forEach(sec => {
-      const title = sec.querySelector('.section-title').textContent;
-      output += '\n## ' + title.toUpperCase() + '\n';
-      sec.querySelectorAll('.item').forEach(item => {
-        const cb = item.querySelector('input[type="checkbox"]');
-        const label = item.querySelector('.item-label').textContent.replace(/\s+/g, ' ').trim();
-        output += (cb.checked ? '[✓] ' : '[ ] ') + label + '\n';
-      });
-      const ta = sec.querySelector('textarea');
-      if (ta && ta.value.trim()) {
-        output += '\nNotes : ' + ta.value.trim() + '\n';
-      }
+// ── EXPORT ──
+function exportDossier() {
+  const all = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+  const done = Array.from(all).filter(c => c.checked).length;
+  const notes = document.querySelector('textarea')?.value || '';
+  let out = 'DOSSIER DE SIGNALEMENT – ' + new Date().toLocaleDateString('fr-FR') + '\n';
+  out += '='.repeat(52) + '\n\n';
+  if (selected.size > 0) {
+    out += 'INFRACTIONS SÉLECTIONNÉES :\n';
+    selected.forEach(id => {
+      const c = crimes.find(x => x.id === id);
+      if (c) out += '  ▸ ' + c.label + ' — ' + c.sub + '\n';
     });
-
-    output += '\n' + '='.repeat(50) + '\n';
-    output += 'Complétude : ' + checked + '/' + total + ' éléments\n';
-    output += '\nSignaler sur : https://www.internet-signalement.gouv.fr\n';
-    output += 'Urgence enfant en danger : 119\n';
-
-    const blob = new Blob([output], {type: 'text/plain;charset=utf-8'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'signalement_' + new Date().toISOString().slice(0,10) + '.txt';
-    a.click();
-    URL.revokeObjectURL(url);
+    out += '\n';
   }
+  out += 'COMPLÉTUDE DU DOSSIER : ' + done + '/' + all.length + ' éléments\n\n';
+  out += 'ÉLÉMENTS COCHÉS :\n';
+  all.forEach(cb => {
+    const label = cb.closest('.checklist-item').querySelector('.ci-label').textContent.trim();
+    out += (cb.checked ? '[✓] ' : '[ ] ') + label + '\n';
+  });
+  if (notes.trim()) out += '\nNOTES COMPLÉMENTAIRES :\n' + notes.trim() + '\n';
+  out += '\n' + '='.repeat(52) + '\n';
+  out += 'CONTACTS OFFICIELS :\n';
+  out += '  Police          : 17\n';
+  out += '  SAMU            : 15\n';
+  out += '  Enfance danger  : 119\n';
+  out += '  Cyberviolences  : 3018\n';
+  out += '  PHAROS          : https://www.internet-signalement.gouv.fr\n';
+  out += '  Pré-plainte     : https://www.pre-plainte-en-ligne.gouv.fr\n';
+  out += '\nCet outil est une initiative citoyenne indépendante.\n';
+  const blob = new Blob([out], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'signalement_' + new Date().toISOString().slice(0,10) + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
 
-  init();
+// ── DATE ──
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('fr-FR', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+// ── INIT ──
+renderCrimes();
 </script>
 </body>
 </html>
